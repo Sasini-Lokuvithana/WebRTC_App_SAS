@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Video Conference</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Join Dialog -->
+    <div id="joinDialog" class="join-dialog">
+        <h2>Join Meeting</h2>
+        <div class="input-group">
+            <input type="text" id="userName" placeholder="Your Name" required>
+            <input type="text" id="roomName" placeholder="Room Name" required>
+            <button id="joinRoom" class="primary-button">Join</button>
+        </div>
+    </div>
+
+    <!-- Conference Container -->
+    <div id="conferenceContainer" class="conference-container" style="display: none;">
+        <!-- Participants Panel -->
+        <div id="participantsPanel" class="participants-panel">
+            <div class="panel-header">
+                <h3>Participants (<span id="participantCount">0</span>)</h3>
+            </div>
+            <div id="participantsList" class="participants-list">
+                <!-- Participants will be added here dynamically -->
+            </div>
+        </div>
+
+        <!-- Main Video Container -->
+        <div id="videoContainer" class="video-container">
+            <!-- Remote videos will be added here dynamically -->
+        </div>
+
+        <!-- Local Video Container -->
+        <div class="local-video-container">
+            <video id="localVideo" autoplay playsinline muted></video>
+            <div class="video-overlay">
+                <span class="participant-name">You</span>
+            </div>
+        </div>
+
+        <!-- Chat Panel -->
+        <div id="chatPanel" class="chat-panel">
+            <div class="chat-header">
+                <h3>Chat</h3>
+                <button id="closeChatButton" class="close-button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="chatMessages" class="chat-messages">
+                <!-- Messages will be added here dynamically -->
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Control Bar -->
+        <div class="control-bar">
+            <button id="muteButton" class="control-button">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button id="videoButton" class="control-button">
+                <i class="fas fa-video"></i>
+            </button>
+            <button id="shareScreen" class="control-button">
+                <i class="fas fa-desktop"></i>
+            </button>
+            <button id="chatButton" class="control-button">
+                <i class="fas fa-comments"></i>
+            </button>
+            <button id="leaveRoom" class="control-button danger">
+                <i class="fas fa-phone-slash"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
